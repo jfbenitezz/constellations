@@ -1,0 +1,6 @@
+python-telegram-bot
+telegram
+pandas
+pyplot
+requests
+dropbox
