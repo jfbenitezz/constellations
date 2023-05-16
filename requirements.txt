@@ -4,3 +4,4 @@ pandas
 pyplot
 requests
 dropbox
+matplotlib
