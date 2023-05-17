@@ -1,10 +1,18 @@
+#!/usr/bin/env python
+# pylint: disable=unused-argument, wrong-import-position
+# This program is dedicated to the public domain under the CC0 license.
 
+"""
+Simple Bot to reply to Telegram messages.
+
+First, a few handler functions are defined. Then, those functions are passed to
+the Application and registered at their respective places.
+Then, the bot is started and runs until we press Ctrl-C on the command line.
+"""
 from constelaciones import *
 import plotly.io as pio
 from io import BytesIO
 import logging
-from telegram import __version__ as TG_VER
-
 from telegram import ForceReply, Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, ConversationHandler
@@ -29,9 +37,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     await update.message.reply_html(
-        rf"Bienevenido {user.mention_html()}, soy Ramiel encargado del mapa astral{chr(10)}Para acceder a la lista de comandos escribe: /help{chr(10)}Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver una constelacion de tu preferencia escribe: /add{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}Solo se podra acceder con cuenta de dropbox o google")
+        rf"Bienvenido {user.mention_html()}, soy Ramiel encargado del mapa astral{chr(10)}Para acceder a la lista de comandos escribe: /help{chr(10)}Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver una constelacion de tu preferencia escribe: /add{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}Solo se podra acceder con cuenta de dropbox o google")
     await update.message.reply_text(
-        "Las constelaciones disponibles son:\nBoyero, Casiopea, Cazo, Cygnet, Geminis\nHydra, OsaMayor, OsaMenor\nPor favor, escribe una constelación y luego escribe /add:")
+        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPor favor, escribe una constelación y luego escribe /add:")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
@@ -41,7 +49,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         reply_markup=ForceReply(selective=True),
     )
     await update.message.reply_text(
-        "Las constelaciones disponibles son:\nBoyero, Casiopea, Cazo, Cygnet, Geminis\nHydra, OsaMayor, OsaMenor\nPara escoger una escribe su nombre y envia\nLuego escribe /add") 
+        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPara escoger una escribe su nombre y envia\nLuego escribe /add") 
     
 async def allstars_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global latest_fig
@@ -95,9 +103,8 @@ async def chart_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     await context.bot.send_photo(chat_id=update.effective_chat.id, photo=image_bytes)
 
 async def send_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    dbx = dropbox.Dropbox("sl.BehOttiryl9hAvGa5V5K9hiSfRUJy-b2ZD9T4bfKcysm6eajq9ZR93rJb7F0BAtVEQQ47UvSTyiZFrrT3jcvye4HW5oZd4fWt-gX1cr9adkJr9TdWFjwXAlZZtvK_bks29Yjofqh")
+    dbx = dropbox.Dropbox("sl.Bd4Jnz_NcxKZFBTGWoMZy23m5tTHvuHcoXGlGrQKRQIVYk_v8CccCIINWXFKkW2e63wkngUiLF_uyroGYjLOKd9_OTWW9Y278pqxepuySSfowrCk7nA49-c8g2XBIp-4j-zKymWEjRM")
     fig_html = pio.to_html(latest_fig)
-
     # Save HTML to a temporary file
     with open('chart.html', 'w', encoding='utf-8') as f:
         f.write(fig_html)
@@ -126,8 +133,6 @@ async def send_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # send the link to the user
     await update.message.reply_text("Se genero el mapa interactivo:")
     await context.bot.send_message(chat_id=update.effective_chat.id, text=link)
-
-
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global chosen_constelation
