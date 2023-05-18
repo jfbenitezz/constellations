@@ -13,7 +13,7 @@ from constelaciones import *
 import plotly.io as pio
 from io import BytesIO
 import logging
-from telegram import ForceReply, Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, ConversationHandler
 import requests
@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 # Define a few command handlers. These usually take the two arguments update and
-# context.
+# context
 latest_fig = None
 chosen_constelation = None
 stars, star_coords = load_stars()
@@ -39,15 +39,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_html(
         rf"Bienvenido {user.mention_html()}, soy Ramiel encargado del mapa astral{chr(10)}Para acceder a la lista de comandos escribe: /help{chr(10)}Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver una constelacion de tu preferencia escribe: /add{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}Solo se podra acceder con cuenta de dropbox o google")
     await update.message.reply_text(
-        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPor favor, escribe una constelación y luego escribe /add:")
+        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPor favor, escribe una constelación\n Luego escribe /add:")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     await update.message.reply_html(
-        rf"Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}",
-        reply_markup=ForceReply(selective=True),
-    )
+        rf"Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}")
     await update.message.reply_text(
         "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPara escoger una escribe su nombre y envia\nLuego escribe /add") 
     
