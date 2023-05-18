@@ -8,7 +8,7 @@ import numpy  as np
 def load_stars():
   # Lee txt como archivo y limpia
   df = pd.read_csv('stars.txt', sep=' ', header=None, names=["x","y","z","Id_Henry_Draper","Brillo","Id_Harvard","Nombre", 'col7', 'col8', 'col9', 'col10'])
-  df = df.fillna(value=pd.np.nan)
+  df = df.fillna(value=np.nan)
   df['Nombre'] = df.apply(lambda x: ' '.join(str(val) for val in x[6:10] if str(val) != "nan"), axis=1)
   df = df.iloc[:, :-4]
   df = df.drop('z', axis=1)
