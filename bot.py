@@ -101,7 +101,7 @@ async def chart_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     await context.bot.send_photo(chat_id=update.effective_chat.id, photo=image_bytes)
 
 async def send_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    dbx = dropbox.Dropbox("sl.Bel8Bh20DbvlctF_uBFRuJ1An3Dmz41IGWVchz5yNRnX-YgMlH1crdAM-936P7_vyCWulDtMtj4KkwxFwnmo4PlYCsZxv8jEkYPmCwej2e_nd8BC03cEpovW375Fhw5baiwB1XRS")
+    dbx = dropbox.Dropbox("sl.BelHsjfErP6wkPBa8U4hWoT6Geo-a6a8uYDDebqqWUEKTErZxyL8Q80QEo_0p77ed7HpYSsgPelqtURww3OfOeKZhXRy-PVIiav2VZGhXlOvtlWtGZUCIb2J5oxr1CcBdHXp1EyU")
     fig_html = pio.to_html(latest_fig)
     # Save HTML to a temporary file
     with open('chart.html', 'w', encoding='utf-8') as f:
