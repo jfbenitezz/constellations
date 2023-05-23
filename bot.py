@@ -39,7 +39,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_html(
         rf"Bienvenido {user.mention_html()}, soy Ramiel encargado del mapa astral{chr(10)}Para acceder a la lista de comandos escribe: /help{chr(10)}Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver una constelacion de tu preferencia escribe: /add{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}Solo se podra acceder con cuenta de dropbox o google")
     await update.message.reply_text(
-        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPor favor, escribe una constelación\n Luego escribe /add:")
+        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPor favor, Envie un mensaje con el nombre de la constelación\nLuego envié /add para agregar obtener la constelación")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
@@ -47,7 +47,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     await update.message.reply_html(
         rf"Para ver el mapa sin constelaciones escribe: /chart{chr(10)}Para ver el mapa con todas las constelaciones escribe: /all{chr(10)}Para acceder a un mapa interactivo escribe: /link{chr(10)}")
     await update.message.reply_text(
-        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nPara escoger una escribe su nombre y envia\nLuego escribe /add") 
+        "Las constelaciones disponibles son:\nBoyero\nCasiopea\nCazo\nCygnet\nGeminis\nHydrav\nOsaMayor\nOsaMenor\nEnvie un mensaje con el nombre de la constelación\nLuego envié /add para agregar obtener la constelación") 
     
 async def allstars_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global latest_fig
